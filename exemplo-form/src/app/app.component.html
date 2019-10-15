@@ -1,0 +1,37 @@
+<h1>My Contac's List</h1>
+
+<form #formContact="ngForm">
+
+  <input type="text" placeholder="Name" name="name"
+    [(ngModel)]="contact.name"
+    required #name="ngModel"/> <br/>
+    <div class="error" *ngIf="name.invalid && name.dirty">Name is required!</div><br/>
+
+  <input type="text" placeholder="E-mail" 
+    name="email" [(ngModel)]="contact.email"
+    required #email="ngModel"/><br/>
+    <div class="error" *ngIf="email.invalid && email.dirty">E-mail is required!</div><br/>
+
+  <input type="text" placeholder="Phone Number" 
+  name="phone" [(ngModel)]="contact.phone"
+  required #phone="ngModel"/><br/>
+  <div class="error" *ngIf="phone.invalid && phone.dirty">Phone number is required!</div><br/>
+
+  <input type="date" placeholder="Birth Date" 
+  name="birth" [(ngModel)]="contact.birthDate"
+  required #birth="ngModel"/><br/>
+  <div class="error" *ngIf="birth.invalid && birth.dirty">Birth date is required!</div><br/>
+
+  <input type="button" value="Save" (click)='save()'
+    [disabled]="formContact.invalid"/>
+
+</form>
+
+<ul>
+  <li *ngFor='let c of allContacts'>
+    {{c.name}}<br/>
+    {{c.email}}-
+    {{c.phone}}<br/>
+    {{c.birthDate | date:"dd/MM/yyyy"}}
+  </li>
+</ul>
